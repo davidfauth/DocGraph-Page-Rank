@@ -5,14 +5,14 @@ Mortar is a platform-as-a-service for Hadoop.  With Mortar, you can run jobs on 
 # Getting Started
 
 This Mortar project calculates pageranks for the DocGraph data set.  To run this example:
-
+1. [Obtain an Amazon S3 account](http://aws.amazon.com/s3/)
 1. [Signup for a Mortar account](https://app.mortardata.com/signup)
 1. [Install the Mortar Development Framework](http://help.mortardata.com/#!/install_mortar_development_framework)
 1. Clone this repository to your computer and register it as a project with Mortar:
 
-        git clone git@github.com:mortardata/twitter-pagerank.git
-        cd twitter-pagerank
-        mortar register twitter-pagerank
+        git clone git@github.com:davidfauth/DocGraph-Page-Rank.git
+        cd DocGraph-Page-Rank
+        mortar register DocGraph-Page-Rank
 
 Once everything is set up you can run this example by doing:
 
@@ -22,7 +22,7 @@ By default this script will run on the full DocGraph data set with the most foll
 
 # DocGraph Data
 
-The twitter data we're using cames from [About DocGraph](http://notonlydev.com/docgraph/) and was generated in early 2010.  
+The twitter data we're using cames from [About DocGraph](http://notonlydev.com/docgraph/) headed up by [Fred Trotter](http://twitter.com/fredtrotter)
 
 # Pagerank
 
@@ -38,13 +38,15 @@ The file ./controlscripts/pagerank.py is the top level script that we're going t
 
 For easier debugging of control scripts all print statements are included in the pig logs shown on the job details page in the Mortar web application.
 
+The control scripts contain references to data stored on your personal Amazon S3 buckets. These will need to be changed for the job to run correctly. These are located in the #Input Data Paths section.
+
 ## Pig Scripts
 
 This project contains four pig scripts:
 
 ### most\_popular\_users.pig
 
-This pig script takes the full Twitter follower graph from 2010 and returns the subset of the graph that includes only the top 100 000 users. 
+This pig script takes the full DocGaph graph and returns the subset of the graph that includes only the top 750 doctors/hospitals/labs. 
 
 ### pagerank\_preprocess.pig
 
@@ -52,11 +54,11 @@ This pig script takes our input data and converts it into the format that we'll 
 
 ### pagerank\_iterate.pig
 
-This pig script calculates updated pagerank values for each user in the twitter graph.  It takes as input the previous pagerank values calculated for each user.  This script also calculates a 'max\_diff' value that is the largest change in pagerank for any user in the graph.  This value is used by the control script to determine if its worth running another iteration to calculate even more accurate pagerank values.
+This pig script calculates updated pagerank values for each user in the DocGraph graph.  It takes as input the previous pagerank values calculated for each user.  This script also calculates a 'max\_diff' value that is the largest change in pagerank for any user in the graph.  This value is used by the control script to determine if its worth running another iteration to calculate even more accurate pagerank values.
 
 ### pagerank\_postprocess.pig
 
-This pig script takes the final pagerank values calculated for each user and writes the top 1000 users and their pageranks to S3.
+This pig script takes the final pagerank values calculated for each user and writes the top 750 users and their pageranks to S3.
 
 # Pagerank Parameters
 
