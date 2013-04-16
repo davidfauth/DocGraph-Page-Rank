@@ -2,6 +2,14 @@
 
 Mortar is a platform-as-a-service for Hadoop.  With Mortar, you can run jobs on Hadoop using Apache Pig and Python without any special training.  You create your project using the Mortar Development Framework, deploy code using the Git revision control system, and Mortar does the rest.
 
+# DocGraph Data
+
+The data we're using comes from [About DocGraph](http://notonlydev.com/docgraph/) headed up by [Fred Trotter](http://twitter.com/fredtrotter)
+You must have access to the DocGraph dataset in order to run this example. 
+
+This example also relies on the National Provider Standard Identifier (NPI) file located [here](http://nppes.viva-it.com/NPI_Files.html) and the 
+National Uniform Claim Committee (NUCC) Health Care Provider Taxonomy Code Set located [here](http://www.nucc.org/index.php?option=com_content&view=article&id=107&Itemid=132).
+
 # Getting Started
 
 This Mortar project calculates pageranks for the DocGraph data set.  To run this example:
@@ -13,16 +21,17 @@ This Mortar project calculates pageranks for the DocGraph data set.  To run this
         git clone git@github.com:davidfauth/DocGraph-Page-Rank.git
         cd DocGraph-Page-Rank
         mortar register DocGraph-Page-Rank
+		
+1. Configure the data sources. 
+		In controlscripts/pagerank.py, modify the #Input Data Paths to reflect the location of your data files.
+		
 
 Once everything is set up you can run this example by doing:
 
-        mortar run pagerank --clustersize 5
+        mortar run docGraphPagerank --clustersize 5
 
-By default this script will run on the full DocGraph data set with the most followers and finish in about 45 minutes using a 5 node cluster.
+By default this script will run on the full DocGraph data set with the most followers and finish in about 1 hour a minutes using a 5 node cluster.
 
-# DocGraph Data
-
-The twitter data we're using cames from [About DocGraph](http://notonlydev.com/docgraph/) headed up by [Fred Trotter](http://twitter.com/fredtrotter)
 
 # Pagerank
 
