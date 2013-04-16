@@ -12,6 +12,8 @@ National Uniform Claim Committee (NUCC) Health Care Provider Taxonomy Code Set l
 
 # Getting Started
 
+This project is based on a more generic Mortar developed project that you can find at Mortar's Github [page](http://www.github.com/mortardata/mortar-pagerank.git).
+
 This Mortar project calculates pageranks for the DocGraph data set.  To run this example:
 1. [Obtain an Amazon S3 account](http://aws.amazon.com/s3/)
 1. [Signup for a Mortar account](https://app.mortardata.com/signup)
@@ -25,7 +27,6 @@ This Mortar project calculates pageranks for the DocGraph data set.  To run this
 1. Configure the data sources. 
 		In controlscripts/pagerank.py, modify the #Input Data Paths to reflect the location of your data files.
 		
-
 Once everything is set up you can run this example by doing:
 
         mortar run docGraphPagerank --clustersize 5
